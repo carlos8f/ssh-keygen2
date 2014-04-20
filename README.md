@@ -14,6 +14,7 @@ This module is useful if you want:
   but requires a second function call)
 - error handling (errors are not handled by [ssh-keygen](https://www.npmjs.org/package/ssh-keygen))
 - option to keep the resulting key files, or clean them up
+  ([ssh-keygen](https://www.npmjs.org/package/ssh-keygen)'s `destroy` option does nothing)
 - randomart.
 
 ### Requirements

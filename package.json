@@ -7,8 +7,7 @@
     "idgen": "^2.0.2"
   },
   "devDependencies": {
-    "mocha": "*",
-    "ssh-key-decrypt": "^0.1.1"
+    "mocha": "*"
   },
   "scripts": {
     "test": "make test"
@@ -24,7 +23,9 @@
     "crypto",
     "keypair",
     "ssh",
-    "pubkey"
+    "pubkey",
+    "randomart",
+    "pem"
   ],
   "author": "Carlos Rodriguez <carlos@s8f.org> (http://s8f.org/)",
   "license": "MIT",
