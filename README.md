@@ -3,7 +3,25 @@ ssh-keygen2
 
 Automate ssh-keygen command for generating RSA keypairs
 
-## Usage
+### Rationale
+
+This module is useful if you want:
+
+- encrypted PEM format ([keypair](https://www.npmjs.org/package/keypair)
+  and [rsa-json](https://www.npmjs.org/package/rsa-json) do not support this)
+- ssh-format, single-line pubkey (again not supported by the above modules)
+- fingerprint (supported by [ssh-keygen](https://www.npmjs.org/package/ssh-keygen)
+  but requires a second function call)
+- error handling (errors are not handled by [ssh-keygen](https://www.npmjs.org/package/ssh-keygen))
+- option to keep the resulting key files, or clean them up
+- randomart.
+
+### Requirements
+
+This is just a wrapper around `ssh-keygen`, so it requires that
+command to be installed and in the path.
+
+### Usage
 
 ```js
 var keygen = require('ssh-keygen2')
