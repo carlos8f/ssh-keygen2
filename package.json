@@ -1,0 +1,34 @@
+{
+  "name": "ssh-keygen2",
+  "version": "0.0.0",
+  "description": "Automate ssh-keygen command for generating RSA keypairs",
+  "main": "index.js",
+  "dependencies": {
+    "idgen": "^2.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "ssh-key-decrypt": "^0.1.1"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/carlos8f/ssh-keygen2.git"
+  },
+  "homepage": "https://github.com/carlos8f/ssh-keygen2",
+  "keywords": [
+    "rsa",
+    "encryption",
+    "crypto",
+    "keypair",
+    "ssh",
+    "pubkey"
+  ],
+  "author": "Carlos Rodriguez <carlos@s8f.org> (http://s8f.org/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carlos8f/ssh-keygen2/issues"
+  }
+}
