@@ -4,12 +4,16 @@ name: Build, Test, and Publish
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [10, 12, 13, 14]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: '10.x'
+          node-version: ${{ matrix.node }}
       - run: npm install
       - run: npm test
   publish-npm-if-tag:
@@ -25,4 +29,4 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN }}        
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN }}
