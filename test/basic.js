@@ -1,4 +1,5 @@
 var keygen = require('../');
+var assert = require('assert');
 
 describe('basic', function () {
   it('generates', function (done) {
