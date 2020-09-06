@@ -1,6 +1,6 @@
 {
-  "name": "ssh-keygen2",
-  "version": "0.1.0",
+  "name": "@andrewwlane/ssh-keygen2",
+  "version": "0.2.0",
   "description": "Automate ssh-keygen command for generating RSA keypairs",
   "main": "index.js",
   "dependencies": {
@@ -14,9 +14,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/carlos8f/ssh-keygen2.git"
+    "url": "git://github.com/AndrewLane/ssh-keygen2.git"
   },
-  "homepage": "https://github.com/carlos8f/ssh-keygen2",
+  "homepage": "https://github.com/AndrewLane/ssh-keygen2",
   "keywords": [
     "rsa",
     "encryption",
@@ -27,9 +27,9 @@
     "randomart",
     "pem"
   ],
-  "author": "Carlos Rodriguez <carlos@s8f.org> (http://s8f.org/)",
+  "author": "Andrew Lane <andrew.w.lane@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/carlos8f/ssh-keygen2/issues"
+    "url": "https://github.com/AndrewLane/ssh-keygen2/issues"
   }
 }
