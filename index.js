@@ -1,6 +1,6 @@
 var spawn = require('child_process').spawn
   , path = require('path')
-  , tmpDir = require('os').tmpDir()
+  , tmpDir = require('os').tmpdir()
   , idgen = require('idgen')
   , fs = require('fs')
 
