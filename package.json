@@ -4,10 +4,10 @@
   "description": "Automate ssh-keygen command for generating RSA keypairs",
   "main": "index.js",
   "dependencies": {
-    "idgen": "^2.0.2"
+    "idgen": "2.1.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "8.0.1"
   },
   "scripts": {
     "test": "mocha"
