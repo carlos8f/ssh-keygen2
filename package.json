@@ -3,9 +3,7 @@
   "version": "0.3.0",
   "description": "Automate ssh-keygen command for generating RSA keypairs",
   "main": "index.js",
-  "dependencies": {
-    "idgen": "2.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "8.1.3"
   },
