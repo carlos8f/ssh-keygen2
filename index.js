@@ -1,7 +1,7 @@
 var spawn = require('child_process').spawn
   , path = require('path')
   , tmpDir = require('os').tmpdir()
-  , idgen = require('idgen')
+  , crypto = require('crypto')
   , fs = require('fs')
 
 module.exports = function (opts, cb) {
@@ -12,7 +12,7 @@ module.exports = function (opts, cb) {
   opts || (opts = {});
   var stderr = ''
     , stdout = ''
-    , location = opts.location || path.join(tmpDir, idgen())
+    , location = opts.location || path.join(tmpDir, crypto.randomBytes(16).toString('hex'))
     , args = []
     , ret = {}
 
