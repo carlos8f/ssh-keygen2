@@ -1,6 +1,6 @@
 ---
 on: push
-name: Build, Test, and Publish
+name: Build, Test, Upload Coverage, and Publish
 jobs:
   build:
     name: Build
@@ -30,3 +30,18 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN }}
+  upload-coverage:
+    name: Upload Coverage
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npm run coverage
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/
