@@ -1,5 +1,9 @@
 const { expect } = require('chai');
 const { describe, it } = require('mocha');
+const tmpDir = require('os').tmpdir();
+const path = require('path');
+const crypto = require('crypto');
+const fs = require('fs');
 const keygen = require('..');
 
 describe('basic tests', () => {
@@ -13,6 +17,7 @@ describe('basic tests', () => {
       done();
     });
   });
+
   it('encrypts', (done) => {
     keygen({ password: 'blahblahblah' }, (err, result) => {
       expect(expect(err).to.be.null);
@@ -22,6 +27,45 @@ describe('basic tests', () => {
       expect(result.fingerprint.length > 0);
       expect(result.randomart.length > 0);
       done();
+    });
+  });
+
+  it('fails with negative number of bits', (done) => {
+    keygen({ bits: -1 }, (err, _) => {
+      expect(expect(err).to.not.be.null);
+      expect(err).to.match(/Bits has bad value/);
+      done();
+    });
+  });
+
+  it('keeps the file when asked to', (done) => {
+    const dummyLocation = path.join(tmpDir, `dummy_file_to_keep_${crypto.randomBytes(16).toString('hex')}`);
+
+    keygen({ keep: true, location: dummyLocation }, (err, result) => {
+      expect(expect(err).to.be.null);
+      expect(expect(result.path).to.not.be.null);
+      const privateKey = result.private;
+      fs.readFile(result.path, { encoding: 'ascii' }, (fileReadErr, key) => { // eslint-disable-line consistent-return
+        expect(expect(fileReadErr).to.be.null);
+        expect(key).to.match(/^-----BEGIN RSA PRIVATE KEY-----\n/);
+        expect(key).to.eql(privateKey);
+        done();
+      });
+    });
+  });
+
+  it('discards the file when asked to', (done) => {
+    const dummyLocation = path.join(tmpDir, `dummy_file_to_discard_${crypto.randomBytes(16).toString('hex')}`);
+
+    keygen({ keep: false, location: dummyLocation }, (err, result) => {
+      expect(expect(err).to.be.null);
+      expect(expect(result.path).to.be.undefined);
+      expect(result.private).to.match(/^-----BEGIN RSA PRIVATE KEY-----\n/);
+      fs.readFile(dummyLocation, { encoding: 'ascii' }, (fileReadErr, _) => { // eslint-disable-line consistent-return
+        expect(expect(fileReadErr).to.not.be.null);
+        expect(fileReadErr.code).to.eql('ENOENT');
+        done();
+      });
     });
   });
 });

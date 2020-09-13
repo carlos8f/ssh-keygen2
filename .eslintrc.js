@@ -12,5 +12,6 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 0,
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
 };
