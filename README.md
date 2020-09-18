@@ -29,7 +29,7 @@ command to be installed and in the path.
 ### Usage
 
 ```js
-var keygen = require('ssh-keygen2')
+var keygen = require('@andrewwlane/ssh-keygen2')
   , assert = require('assert')
 
 // generate a temporary keypair and return details
@@ -93,7 +93,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRjv3GW0oAWhusF7+4jIOhkkax33jqOyIUE1dSnkun
 With full options:
 
 ```js
-var keygen = require('ssh-keygen2')
+var keygen = require('@andrewwlane/ssh-keygen2')
   , assert = require('assert')
 
 var opts = {
