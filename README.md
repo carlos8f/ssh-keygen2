@@ -1,7 +1,11 @@
-ssh-keygen2
-===========
+@andrewwlane/ssh-keygen2
+========================
 
 Automate ssh-keygen command for generating RSA keypairs
+
+### Note
+
+Forked from [this package](https://www.npmjs.com/package/ssh-keygen2) which has been abandoned.
 
 ### Rationale
 
@@ -95,7 +99,6 @@ var keygen = require('ssh-keygen2')
 var opts = {
   type: 'rsa',
   bits: 4096,
-  comment: 'carlos8f',
   passphrase: 'this will encrypt the private key',
   location: '/path/to/id_rsa',
   keep: true, // this will keep the resulting files
@@ -185,12 +188,6 @@ ed:8c:0e:31:14:e7:f6:58:6b:51:10:9c:66:44:4d:5c optional comment for ssh public 
 |        .        |
 +-----------------+
 ```
-
-- - -
-
-### Developed by [Terra Eclipse](http://www.terraeclipse.com)
-Terra Eclipse, Inc. is a nationally recognized political technology and
-strategy firm located in Aptos, CA and Washington, D.C.
 
 - - -
 
