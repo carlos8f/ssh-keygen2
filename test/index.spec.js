@@ -105,4 +105,20 @@ describe('basic tests', () => {
       done();
     });
   });
+
+  it('should fail if trying to overwrite an existing file', (done) => {
+    const dummyLocation = path.join(tmpDir, `dummy_file_to_discard_${crypto.randomBytes(16).toString('hex')}`);
+
+    // run the process twice with a fixed location, and the second one should fail
+    keygen({ keep: true, location: dummyLocation }, (firstErr, firstResult) => {
+      expect(expect(firstErr).to.be.null);
+      expect(expect(firstResult.path).to.not.be.undefined);
+      expect(firstResult.private).to.match(/^-----BEGIN RSA PRIVATE KEY-----\n/);
+      keygen({ keep: true, location: dummyLocation }, (secondErr, _) => {
+        expect(expect(secondErr).to.not.be.null);
+        expect(secondErr).to.match(/Key not generated because it would overwrite an existing file/);
+        done();
+      });
+    });
+  });
 });

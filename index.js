@@ -12,6 +12,7 @@ module.exports = (opts, cb) => {
   opts = opts || {}; // eslint-disable-line no-param-reassign
   let stderr = '';
   let stdout = '';
+  let overwriteRefused = false;
   const location = opts.location || path.join(tmpDir, crypto.randomBytes(16).toString('hex'));
   const args = [];
   const ret = {};
@@ -36,8 +37,17 @@ module.exports = (opts, cb) => {
   });
   proc.stdout.on('data', (data) => {
     stdout += data;
+
+    // check for the case where we are trying to overwrite a file
+    if (stdout.indexOf('already exists') >= 0 && stdout.indexOf('Overwrite') >= 0) {
+      proc.stdin.write('n\n'); // send a "No" which should refuse to overwrite an existing key
+      overwriteRefused = true;
+    }
   });
-  proc.on('exit', () => {
+  proc.on('exit', () => { // eslint-disable-line consistent-return
+    if (overwriteRefused) {
+      return cb(new Error('Key not generated because it would overwrite an existing file'));
+    }
     fs.readFile(location, { encoding: 'ascii' }, (privateErr, privateKey) => { // eslint-disable-line consistent-return
       if (privateErr && privateErr.code !== 'ENOENT') {
         return cb(privateErr);
