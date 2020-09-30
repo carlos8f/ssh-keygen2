@@ -1,5 +1,9 @@
 ---
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 name: Build, Test, Upload Coverage, and Publish
 jobs:
   build:
