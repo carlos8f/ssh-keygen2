@@ -31,7 +31,7 @@ module.exports = (opts, cb) => {
   args.push('-f', location);
   args.push('-m', 'PEM');
 
-  const proc = spawn('ssh-keygen', args, opts);
+  const proc = spawn('ssh-keygen', args);
   proc.stderr.on('data', (data) => {
     stderr += data;
   });
